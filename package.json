@@ -1,0 +1,41 @@
+{
+  "name": "stay-tuned",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start:docker",
+    "start:docker": "docker compose up -d --build",
+    "start:old": "npm run start:docker && npm run hold && npm run start:server",
+    "start:dev": "npm run start:docker && npm run hold && cd server && npm run start:dev",
+    "start:dev:front": "npm run start:docker:front && npm run hold && cd client && npm run start:dev",
+    "start:dev:server": "npm run start:docker:server && npm run hold && cd server && npm run start:dev",
+    "start:dev:sender": "npm run start:docker:sender && npm run hold && cd sender && npm run start:dev",
+    "start:docker:server": "docker compose -f docker-compose-server.dev.yaml up -d --build",
+    "start:docker:sender": "docker compose -f docker-compose-sender.dev.yaml up -d --build",
+    "start:docker:front": "docker compose -f docker-compose-front.dev.yaml up -d --build",
+    "start:server": "cd server && npm start",
+    "start:sender": "cd mail-sender && npm start",
+    "build:client": "cd client && npm run build",
+    "hold": "node -e \"setTimeout(() => process.exit(0), 5000)\"",
+    "lint": "eslint .",
+    "test:server": "cd server && npm run test"    
+  },
+  "workspaces": [
+    "shared",
+    "server",
+    "client",
+    "mail-sender"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11"
+  }
+}
