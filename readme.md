@@ -1,6 +1,6 @@
 # The Store with event driven mail queue test
 
-This is a simple sample project to show how I do resolve the situation provided by Stay Tuned challenge.
+This is a simple sample project to show a sample on how I think about eventi driven solution for a simple use case where someone subscribe for an event and receive notifications through email.
 
 ## Build
 
